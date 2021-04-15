@@ -22,6 +22,8 @@ func main() {
 	for _, qryConf := range config.Nxapi {
 		// Loop over hosts in the config
 		for _, host := range qryConf.Host {
+			buf.Reset()
+
 			cli := client.NewClient()
 			cli.SetHost(host)
 			cli.SetPort(qryConf.Port)
@@ -31,16 +33,23 @@ func main() {
 
 			// Get system information
 			SysInfo, err := cli.GetSystemInfo()
-			PrintErr(err)
+			if err != nil {
+				fmt.Println("Error connecting to host:", host, "with error:", err)
+				continue
+			}
 
 			// Print metric
-			buf.WriteString(fmt.Sprintf("CiscoProm_up{version=%q} 1\n", SysInfo.Bios.Version))
+			buf.WriteString(fmt.Sprintf("CiscoProm_up{version=%q,host=%q} 1\n",
+				SysInfo.Bios.Version, host))
+
+			if config.Push == "" {
+				// Print out the result
+				fmt.Printf("metrics:\n%s", buf)
+			} else {
+				UploadToCollector(config.Push, buf.String())
+			}
 
 		}
 	}
 
-	if config.Push == "" {
-		// Print out the result
-		fmt.Printf("metrics:\n%s", buf)
-	}
 }
