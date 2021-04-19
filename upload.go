@@ -43,8 +43,8 @@ func UploadToCollector(url string, data []byte) (err error) {
 	//}
 
 	resp, err = HTTPClient.Do(req)
-	if resp.StatusCode != 200 || err != nil {
-		log.Printf("response:\n %#v\nerror:\n %#v\n", resp, err)
+	if err != nil || resp.StatusCode != 200 {
+		log.Printf("response:\n %#v\nerror:\n %s\n", resp, err)
 	} else {
 		log.Println("...pushed")
 	}
