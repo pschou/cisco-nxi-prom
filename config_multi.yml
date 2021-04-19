@@ -1,0 +1,18 @@
+---
+version: 1
+push:
+interval: 5m
+nxapi:
+- protocol: https
+  host:
+  - "host1"
+  - "host2"
+  port: 443
+  user: myuser
+  password: mypass
+- host:
+  - "host11"
+  - "host12"
+  - "host13"
+  user: myuser2
+  password: mypass3

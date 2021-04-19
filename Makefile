@@ -7,7 +7,7 @@ FLAGS := "-s -w -X main.version=${VERSION}@${SRC}"
 
 build:
 	CGO_ENABLED=0 go build -ldflags=${FLAGS} -o ${PROG_NAME}
-	upx --lzma ${PROG_NAME}
+	#upx --lzma ${PROG_NAME}
 
 docker: build
 	docker build -f Dockerfile --tag ${IMAGE_NAME}:${VERSION} .
