@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"github.com/pschou/go-cisco-nx-api/pkg/client"
 	"github.com/pschou/go-params"
-	//"io/ioutil"
+	"io/ioutil"
 	"log"
+	"os"
 	"runtime"
 	"strings"
 	"time"
@@ -59,7 +60,18 @@ func main() {
 				cli := client.NewClient()
 				cli.SetHost(host)
 				cli.SetUsername(qryConf.User)
-				cli.SetPassword(qryConf.Password)
+
+				// Alternate method of providing a password Environment variable
+				password := qryConf.Password
+				if len(password) > 0 && password[0] == '@' {
+					dat, _ := ioutil.ReadFile(password[1:])
+					password = string(dat)
+				}
+				if password == "" {
+					password = os.Getenv("PASSWORD")
+				}
+
+				cli.SetPassword(password)
 				cli.SetProtocol(qryConf.Protocol)
 				cli.SetPort(qryConf.Port)
 
@@ -213,7 +225,7 @@ func main() {
 							lbl, r.Desc, r.EthAutoNeg)
 
 						fmt.Fprintf(&buf, "cisco_interface_state{%s} %d\n", lbl, stateSwitch(r.State))
-						fmt.Fprintf(&buf, "cisco_interface_adminstate{%s} %d\n", lbl, stateSwitch(r.AdminState))
+						fmt.Fprintf(&buf, "cisco_interface_admin_state{%s} %d\n", lbl, stateSwitch(r.AdminState))
 
 						for i, v := range r.EthBW {
 							fmt.Fprintf(&buf, "cisco_interface_bw_bits{%s,stream=\"%d\"} %d\n", lbl, i, v)

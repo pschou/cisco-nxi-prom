@@ -43,8 +43,10 @@ nxapi:
   - "host2"
   port: 443
   user: myuser
-  password: mypass
+  password: @password.txt
 ```
+
+Note: By putting @ in front of a file name one can reference a password from the contents of a file.  Otherwise, one may specify a file by leaving password blank and setting the environment variable, like PASSWORD=pass.
 
 Fields used here are:
 - port - The listening port on the network device
