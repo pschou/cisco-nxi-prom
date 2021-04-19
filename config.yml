@@ -8,4 +8,4 @@ nxapi:
   - "host1"
   port: 443
   user: myuser
-  password: mypass
+  password: "@pass.txt"

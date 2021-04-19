@@ -76,12 +76,13 @@ func main() {
 					password := qryConf.Password
 					if len(password) > 0 && password[0] == '@' {
 						dat, _ := ioutil.ReadFile(password[1:])
-						password = string(dat)
+						password = strings.TrimSpace(string(dat))
 					}
 					if password == "" {
 						password = os.Getenv("PASSWORD")
 					}
 
+					//fmt.Printf("password = %q\n", password)
 					cli.SetPassword(password)
 					cli.SetProtocol(qryConf.Protocol)
 					cli.SetPort(qryConf.Port)
