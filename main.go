@@ -125,7 +125,7 @@ func main() {
 					const longForm = "Mon Jan 2 15:04:05 2006"
 					t, _ := time.Parse(longForm, ver_resp.Body.RrCTime)
 
-					fmt.Fprintf(&buf, "cisco_reset_time{reason=%q,service=%q,sysVer=%q} %d\n",
+					fmt.Fprintf(&buf, "cisco_reset_time{rr_reason=%q,rr_service=%q,rr_sysVer=%q} %d\n",
 						ver_resp.Body.RrReason, ver_resp.Body.RrService, ver_resp.Body.RrSysVer, t.Unix())
 
 					fmt.Fprintf(&buf, "cisco_uptime_seconds %v\n",
