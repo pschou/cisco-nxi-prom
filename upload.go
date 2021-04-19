@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"crypto/tls"
-	"fmt"
 	"log"
 	"net"
 	"net/http"
@@ -33,7 +32,7 @@ func UploadToCollector(url string, data []byte) (err error) {
 
 	req, err = http.NewRequestWithContext(ctx, "POST", url, bytes.NewReader(data))
 	if err != nil {
-		log.Println("New request error:", err)
+		log.Println("  New request error:", err)
 	}
 
 	//for key, val := range Headers {
@@ -45,7 +44,9 @@ func UploadToCollector(url string, data []byte) (err error) {
 
 	resp, err = HTTPClient.Do(req)
 	if resp.StatusCode != 200 || err != nil {
-		fmt.Printf("response:\n %#v\nerror:\n %#v\n", resp, err)
+		log.Printf("response:\n %#v\nerror:\n %#v\n", resp, err)
+	} else {
+		log.Println("...pushed")
 	}
 
 	return

@@ -7,7 +7,9 @@ FLAGS := "-s -w -X main.version=${VERSION}@${SRC}"
 
 build:
 	CGO_ENABLED=0 go build -ldflags=${FLAGS} -o ${PROG_NAME}
-	#upx --lzma ${PROG_NAME}
+	upx --lzma ${PROG_NAME}
+	#GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -ldflags=${FLAGS} -o ${PROG_NAME}.exe
+	#upx --lzma ${PROG_NAME}.exe
 
 docker: build
 	docker build -f Dockerfile --tag ${IMAGE_NAME}:${VERSION} .

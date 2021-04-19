@@ -24,7 +24,21 @@ type Nxapi struct {
 
 var version = ""
 
-func PrintErr(err error, str ...interface{}) {
+func stateSwitch(s string) (state int) {
+	switch s {
+	case "unknown":
+		state = -1
+	case "down":
+		state = 0
+	case "up":
+		state = 1
+	case "link-up":
+		state = 2
+	}
+	return
+}
+
+func printError(err error, str ...interface{}) {
 	if err == nil {
 		return
 	}
@@ -32,22 +46,19 @@ func PrintErr(err error, str ...interface{}) {
 	log.Println(str...)
 }
 
-func readConfig(config_file string) (config configStruct) {
+func readConfig(config_file string) (config configStruct, err error) {
+	var yamlFile []byte
+
 	// Load yamlFile
-	yamlFile, err := ioutil.ReadFile(config_file)
+	yamlFile, err = ioutil.ReadFile(config_file)
 	if err != nil {
-		log.Fatal("Cannot read config file", config_file, err)
+		return
 	}
 
 	// Parse yamlFile
 	err = yaml.Unmarshal(yamlFile, &config)
 	if err != nil {
-		log.Fatal("Invalid config file format", err)
-	}
-
-	// Set a value for interval if it is not defined
-	if config.Interval == "" {
-		config.Interval = "1m"
+		return
 	}
 
 	//err = yaml.Unmarshal([]byte(data), &conf)
