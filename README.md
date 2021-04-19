@@ -53,3 +53,5 @@ Fields used here are:
 - protocol - The protocol used on the port on the network device (usually http/https)
 - host - List of hosts to query for the metric
 - user/password - Credentials to use for the scraping
+
+To trigger a reload of a config file without restarting the server, use a `pkill -HUP cisco-prom`.
