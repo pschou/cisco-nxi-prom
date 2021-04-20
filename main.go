@@ -247,17 +247,23 @@ func main() {
 								fmt.Fprintf(&buf, "cisco_interface_bw_bits{%s,stream=\"%d\"} %d\n", lbl, i, v)
 							}
 
-							fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_in_pkts{%s} %d\n", lbl, r.VdcLvlInPkts)
-							fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_in_bytes{%s} %d\n", lbl, r.VdcLvlInBytes)
-							fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_in_ucast_pkts{%s} %d\n", lbl, r.VdcLvlInUCast)
-							fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_in_mcast_pkts{%s} %d\n", lbl, r.VdcLvlInMCast)
-							fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_in_bcast_pkts{%s} %d\n", lbl, r.VdcLvlInBCast)
+							// Enable tracking the Vdc counters if any of them is non-zero, otherwise omit.
+							if r.VdcLvlInPkts > 0 || r.VdcLvlInBytes > 0 || r.VdcLvlInUCast > 0 || r.VdcLvlInMCast > 0 ||
+								r.VdcLvlInBCast > 0 || r.VdcLvlOutPkts > 0 || r.VdcLvlOutBytes > 0 || r.VdcLvlOutUCast > 0 ||
+								r.VdcLvlOutMCast > 0 || r.VdcLvlOutBCast > 0 {
 
-							fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_out_pkts{%s} %d\n", lbl, r.VdcLvlOutPkts)
-							fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_out_bytes{%s} %d\n", lbl, r.VdcLvlOutBytes)
-							fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_out_ucast_pkts{%s} %d\n", lbl, r.VdcLvlOutUCast)
-							fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_out_mcast_pkts{%s} %d\n", lbl, r.VdcLvlOutMCast)
-							fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_out_bcast_pkts{%s} %d\n", lbl, r.VdcLvlOutBCast)
+								fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_in_pkts{%s} %d\n", lbl, r.VdcLvlInPkts)
+								fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_in_bytes{%s} %d\n", lbl, r.VdcLvlInBytes)
+								fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_in_ucast_pkts{%s} %d\n", lbl, r.VdcLvlInUCast)
+								fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_in_mcast_pkts{%s} %d\n", lbl, r.VdcLvlInMCast)
+								fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_in_bcast_pkts{%s} %d\n", lbl, r.VdcLvlInBCast)
+
+								fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_out_pkts{%s} %d\n", lbl, r.VdcLvlOutPkts)
+								fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_out_bytes{%s} %d\n", lbl, r.VdcLvlOutBytes)
+								fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_out_ucast_pkts{%s} %d\n", lbl, r.VdcLvlOutUCast)
+								fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_out_mcast_pkts{%s} %d\n", lbl, r.VdcLvlOutMCast)
+								fmt.Fprintf(&buf, "cisco_interface_vdc_lvl_out_bcast_pkts{%s} %d\n", lbl, r.VdcLvlOutBCast)
+							}
 						}
 					}
 
