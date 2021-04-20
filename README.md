@@ -5,8 +5,11 @@ posting metrics, a Prometheus Collector.  The main goal of this utility is to
 be a lightweight metrics scraper capable of running in a very small memory
 footprint.
 
-As this is a simple / directed tool, there is little here in terms of configuration.
+As this is a simple / directed tool, there is little here in terms of
+configuration.
 
+This tool was built to work with the Prometheus Collector.  The offical source
+and documentation can be found here: https://github.com/pschou/prom-collector
 
 ## Syntax
 ```
