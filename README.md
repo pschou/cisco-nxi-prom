@@ -49,7 +49,12 @@ nxapi:
   - "host2"
   port: 443
   user: myuser
-  password: "@password.txt"
+  password: "@password1.txt"
+- host:
+  - "host3"
+  - "host4"
+  user: secondSet
+  password: "@password2.txt"
 ```
 
 Note: By putting @ in front of a file name one can reference a password from
