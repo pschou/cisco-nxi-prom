@@ -72,12 +72,15 @@ func main() {
 					cli.SetHost(host)
 					cli.SetUsername(qryConf.User)
 
-					// Alternate method of providing a password Environment variable
+					// Look at the password in the config file
 					password := qryConf.Password
+					// If it starts with an @ sign, consider it a file
 					if len(password) > 0 && password[0] == '@' {
 						dat, _ := ioutil.ReadFile(password[1:])
 						password = strings.TrimSpace(string(dat))
 					}
+					// If empty, an alternate method of providing a password is through
+					// an environment variable
 					if password == "" {
 						password = os.Getenv("PASSWORD")
 					}
@@ -118,6 +121,7 @@ func main() {
 					//	fmt.Fprintf(&buf,"data %#v\n\n\n", string(result.Result)) // DEBUG
 					//}
 
+					// Parse the reply into structures
 					ver_resp, err := client.NewVersionResultFromBytes(results[0].Result)
 					printRespErr(err, "ver", results[0].Result)
 

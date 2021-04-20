@@ -10,20 +10,20 @@ import (
 	"time"
 )
 
-var HTTPClient = &http.Client{
-	Timeout: time.Second * 30,
-	Transport: &http.Transport{
-		Dial: (&net.Dialer{
-			Timeout: 10 * time.Second,
-		}).Dial,
-		TLSHandshakeTimeout: 10 * time.Second,
-		TLSClientConfig: &tls.Config{
-			InsecureSkipVerify: true,
-		},
-	},
-}
-
 func UploadToCollector(url string, data []byte) (err error) {
+	var HTTPClient = &http.Client{
+		Timeout: time.Second * 30,
+		Transport: &http.Transport{
+			Dial: (&net.Dialer{
+				Timeout: 10 * time.Second,
+			}).Dial,
+			TLSHandshakeTimeout: 10 * time.Second,
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: true,
+			},
+		},
+	}
+
 	var resp *http.Response
 	var req *http.Request
 
