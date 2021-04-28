@@ -22,6 +22,7 @@ vendor:
 	$(call mkvendor,github.com/pschou/go-cisco-nx-api)
 	$(call mkvendor,github.com/pschou/go-json)
 	$(call mkvendor,github.com/sirupsen/logrus)
+	$(call mkvendor,github.com/stretchr/testify/require)
 
 .PHONY: vendor
 

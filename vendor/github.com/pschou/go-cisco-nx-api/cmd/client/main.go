@@ -19,7 +19,7 @@ import (
 	"flag"
 	"fmt"
 	//"github.com/davecgh/go-spew/spew"
-	"github.com/greenpau/go-cisco-nx-api/pkg/client"
+	"github.com/pschou/go-cisco-nx-api/pkg/client"
 	log "github.com/sirupsen/logrus"
 	"os"
 	"strings"
