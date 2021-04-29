@@ -1,0 +1,85 @@
+{
+	"comment": "",
+	"ignore": "",
+	"package": [
+		{
+			"checksumSHA1": "3KhDEC5MM0iyN+FsLfxpnvFVeuY=",
+			"path": "github.com/davecgh/go-spew/spew",
+			"revision": "d8f796af33cc11cb798c1aaeb27a4ebc5099927d",
+			"revisionTime": "2018-08-30T19:11:22Z"
+		},
+		{
+			"checksumSHA1": "a2yC46a1qsJomgY6rb+FkTFiqmE=",
+			"path": "github.com/davecgh/go-spew/spew/testdata",
+			"revision": "d8f796af33cc11cb798c1aaeb27a4ebc5099927d",
+			"revisionTime": "2018-08-30T19:11:22Z"
+		},
+		{
+			"checksumSHA1": "RZOdTSZN/PgcTqko5LzIAzw+UT4=",
+			"path": "github.com/pmezard/go-difflib/difflib",
+			"revision": "5d4384ee4fb2527b0a1256a821ebfc92f91efefc",
+			"revisionTime": "2018-12-26T10:54:42Z"
+		},
+		{
+			"checksumSHA1": "6uWzu8sWPk3mIsomzo4VFHQ8CL0=",
+			"path": "github.com/pschou/go-params",
+			"revision": "a10b5594d7725318db9a6095bf5a1c093b971ee0",
+			"revisionTime": "2021-04-13T18:54:22Z"
+		},
+		{
+			"checksumSHA1": "Tk3HO9F6YeFe23KV/zo1ZYhFYDw=",
+			"path": "github.com/pschou/go-runewidth",
+			"revision": "63555dbd46390889d7568ef0267f8192cf79665e",
+			"revisionTime": "2021-03-31T14:53:57Z"
+		},
+		{
+			"checksumSHA1": "0y/DSqhA6T60yz2F+occDhCt1GQ=",
+			"path": "github.com/rivo/uniseg",
+			"revision": "75711fccf6a3e85bc74c241e2dddd06a9bc9e53d",
+			"revisionTime": "2020-07-11T12:57:57Z"
+		},
+		{
+			"checksumSHA1": "TVDcBQ94HojSJvWLUrW/F/Fmmw4=",
+			"path": "github.com/stretchr/testify/assert",
+			"revision": "92707c0b2d501c60de82176c4aa1cf880abac720",
+			"revisionTime": "2020-10-17T08:25:27Z"
+		},
+		{
+			"checksumSHA1": "0f0yy1i/L/8eczJcL40hroRnF6g=",
+			"path": "go-params",
+			"revision": "a10b5594d7725318db9a6095bf5a1c093b971ee0",
+			"revisionTime": "2021-04-13T18:54:22Z"
+		},
+		{
+			"checksumSHA1": "8EcV1QnSvvRldiLpJbMDsd34ZXs=",
+			"path": "golang.org/x/sys/internal/unsafeheader",
+			"revision": "22da62e12c0cd9c1da93581e1113ca4d82a5be14",
+			"revisionTime": "2021-01-24T12:57:14Z"
+		},
+		{
+			"checksumSHA1": "xXgOn/BLf6u2TGHnPhy14ydsyjc=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "22da62e12c0cd9c1da93581e1113ca4d82a5be14",
+			"revisionTime": "2021-01-24T12:57:14Z"
+		},
+		{
+			"checksumSHA1": "l11eV0v/3SHFnQ7CX3DQZNDtdUs=",
+			"path": "golang.org/x/sys/windows",
+			"revision": "22da62e12c0cd9c1da93581e1113ca4d82a5be14",
+			"revisionTime": "2021-01-24T12:57:14Z"
+		},
+		{
+			"checksumSHA1": "hphHCtLr1dWHJ+AOAb6yaywbcWM=",
+			"path": "gopkg.in/yaml.v2",
+			"revision": "0b1645d91e851e735d3e23330303ce81f70adbe3",
+			"revisionTime": "2020-05-06T23:08:38Z"
+		},
+		{
+			"checksumSHA1": "T7aSH75iGcKcU3HotLcBbsMsM6Q=",
+			"path": "gopkg.in/yaml.v3",
+			"revision": "eeeca48fe7764f320e4870d231902bf9c1be2c08",
+			"revisionTime": "2020-06-15T11:34:13Z"
+		}
+	],
+	"rootPath": "cisco-nx-prom"
+}
