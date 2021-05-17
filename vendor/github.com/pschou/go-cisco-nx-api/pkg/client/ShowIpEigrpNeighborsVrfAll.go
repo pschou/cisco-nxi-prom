@@ -68,12 +68,18 @@ type ShowIpEigrpNeighborsVrfAllResultBody struct {
 }
 
 // NewShowIpEigrpNeighborsVrfAllFromString returns instance from an input string.
-func NewShowIpEigrpNeighborsVrfAllFromString(s string) (*ShowIpEigrpNeighborsVrfAllResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIpEigrpNeighborsVrfAllFromString(s string) (*ShowIpEigrpNeighborsVrfAllResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIpEigrpNeighborsVrfAllFromReader(strings.NewReader(s))
 }
 
 // NewShowIpEigrpNeighborsVrfAllFromBytes returns instance from an input byte array.
-func NewShowIpEigrpNeighborsVrfAllFromBytes(s []byte) (*ShowIpEigrpNeighborsVrfAllResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIpEigrpNeighborsVrfAllFromBytes(s []byte) (*ShowIpEigrpNeighborsVrfAllResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIpEigrpNeighborsVrfAllFromReader(bytes.NewReader(s))
 }
 
@@ -92,12 +98,18 @@ func NewShowIpEigrpNeighborsVrfAllFromReader(s io.Reader) (*ShowIpEigrpNeighbors
 }
 
 // NewShowIpEigrpNeighborsVrfAllResultFromString returns instance from an input string.
-func NewShowIpEigrpNeighborsVrfAllResultFromString(s string) (*ShowIpEigrpNeighborsVrfAllResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIpEigrpNeighborsVrfAllResultFromString(s string) (*ShowIpEigrpNeighborsVrfAllResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIpEigrpNeighborsVrfAllResultFromReader(strings.NewReader(s))
 }
 
 // NewShowIpEigrpNeighborsVrfAllResultFromBytes returns instance from an input byte array.
-func NewShowIpEigrpNeighborsVrfAllResultFromBytes(s []byte) (*ShowIpEigrpNeighborsVrfAllResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIpEigrpNeighborsVrfAllResultFromBytes(s []byte) (*ShowIpEigrpNeighborsVrfAllResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIpEigrpNeighborsVrfAllResultFromReader(bytes.NewReader(s))
 }
 

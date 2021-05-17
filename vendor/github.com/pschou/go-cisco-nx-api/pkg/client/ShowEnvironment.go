@@ -107,12 +107,18 @@ type ShowEnvironmentResultBody struct {
 }
 
 // NewShowEnvironmentFromString returns instance from an input string.
-func NewShowEnvironmentFromString(s string) (*ShowEnvironmentResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowEnvironmentFromString(s string) (*ShowEnvironmentResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowEnvironmentFromReader(strings.NewReader(s))
 }
 
 // NewShowEnvironmentFromBytes returns instance from an input byte array.
-func NewShowEnvironmentFromBytes(s []byte) (*ShowEnvironmentResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowEnvironmentFromBytes(s []byte) (*ShowEnvironmentResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowEnvironmentFromReader(bytes.NewReader(s))
 }
 
@@ -132,12 +138,18 @@ func NewShowEnvironmentFromReader(s io.Reader) (*ShowEnvironmentResponse, error)
 }
 
 // NewShowEnvironmentResultFromString returns instance from an input string.
-func NewShowEnvironmentResultFromString(s string) (*ShowEnvironmentResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowEnvironmentResultFromString(s string) (*ShowEnvironmentResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowEnvironmentResultFromReader(strings.NewReader(s))
 }
 
 // NewShowEnvironmentResultFromBytes returns instance from an input byte array.
-func NewShowEnvironmentResultFromBytes(s []byte) (*ShowEnvironmentResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowEnvironmentResultFromBytes(s []byte) (*ShowEnvironmentResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowEnvironmentResultFromReader(bytes.NewReader(s))
 }
 

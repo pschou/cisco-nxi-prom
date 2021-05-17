@@ -95,12 +95,18 @@ type ShowHsrpResultBody struct {
 }
 
 // NewShowHsrpFromString returns instance from an input string.
-func NewShowHsrpFromString(s string) (*ShowHsrpResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowHsrpFromString(s string) (*ShowHsrpResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowHsrpFromReader(strings.NewReader(s))
 }
 
 // NewShowHsrpFromBytes returns instance from an input byte array.
-func NewShowHsrpFromBytes(s []byte) (*ShowHsrpResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowHsrpFromBytes(s []byte) (*ShowHsrpResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowHsrpFromReader(bytes.NewReader(s))
 }
 
@@ -120,12 +126,18 @@ func NewShowHsrpFromReader(s io.Reader) (*ShowHsrpResponse, error) {
 }
 
 // NewShowHsrpResultFromString returns instance from an input string.
-func NewShowHsrpResultFromString(s string) (*ShowHsrpResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowHsrpResultFromString(s string) (*ShowHsrpResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowHsrpResultFromReader(strings.NewReader(s))
 }
 
 // NewShowHsrpResultFromBytes returns instance from an input byte array.
-func NewShowHsrpResultFromBytes(s []byte) (*ShowHsrpResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowHsrpResultFromBytes(s []byte) (*ShowHsrpResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowHsrpResultFromReader(bytes.NewReader(s))
 }
 

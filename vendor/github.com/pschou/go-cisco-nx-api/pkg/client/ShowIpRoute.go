@@ -125,12 +125,18 @@ func (d *ShowIpRouteResponseResult) Flat() (out []ShowIpRouteResultFlat) {
 }
 
 // NewShowIpRouteFromString returns instance from an input string.
-func NewShowIpRouteFromString(s string) (*ShowIpRouteResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIpRouteFromString(s string) (*ShowIpRouteResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIpRouteFromReader(strings.NewReader(s))
 }
 
 // NewShowIpRouteFromBytes returns instance from an input byte array.
-func NewShowIpRouteFromBytes(s []byte) (*ShowIpRouteResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIpRouteFromBytes(s []byte) (*ShowIpRouteResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIpRouteFromReader(bytes.NewReader(s))
 }
 
@@ -149,12 +155,18 @@ func NewShowIpRouteFromReader(s io.Reader) (*ShowIpRouteResponse, error) {
 }
 
 // NewShowIpRouteResultFromString returns instance from an input string.
-func NewShowIpRouteResultFromString(s string) (*ShowIpRouteResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIpRouteResultFromString(s string) (*ShowIpRouteResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIpRouteResultFromReader(strings.NewReader(s))
 }
 
 // NewShowIpRouteResultFromBytes returns instance from an input byte array.
-func NewShowIpRouteResultFromBytes(s []byte) (*ShowIpRouteResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIpRouteResultFromBytes(s []byte) (*ShowIpRouteResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIpRouteResultFromReader(bytes.NewReader(s))
 }
 

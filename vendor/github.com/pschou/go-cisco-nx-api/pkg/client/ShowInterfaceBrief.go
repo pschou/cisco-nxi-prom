@@ -45,12 +45,18 @@ type ShowInterfaceBriefResponse struct {
 }
 
 // NewShowInterfaceBriefFromString returns instance from an input string.
-func NewShowInterfaceBriefFromString(s string) (*ShowInterfaceBriefResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowInterfaceBriefFromString(s string) (*ShowInterfaceBriefResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowInterfaceBriefFromReader(strings.NewReader(s))
 }
 
 // NewShowInterfaceBriefFromBytes returns instance from an input byte array.
-func NewShowInterfaceBriefFromBytes(s []byte) (*ShowInterfaceBriefResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowInterfaceBriefFromBytes(s []byte) (*ShowInterfaceBriefResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowInterfaceBriefFromReader(bytes.NewReader(s))
 }
 

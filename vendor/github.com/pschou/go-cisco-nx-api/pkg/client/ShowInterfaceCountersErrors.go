@@ -56,12 +56,18 @@ type ShowInterfaceCountersErrorsResultBody struct {
 }
 
 // NewShowInterfaceCountersErrorsFromString returns instance from an input string.
-func NewShowInterfaceCountersErrorsFromString(s string) (*ShowInterfaceCountersErrorsResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowInterfaceCountersErrorsFromString(s string) (*ShowInterfaceCountersErrorsResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowInterfaceCountersErrorsFromReader(strings.NewReader(s))
 }
 
 // NewShowInterfaceCountersErrorsFromBytes returns instance from an input byte array.
-func NewShowInterfaceCountersErrorsFromBytes(s []byte) (*ShowInterfaceCountersErrorsResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowInterfaceCountersErrorsFromBytes(s []byte) (*ShowInterfaceCountersErrorsResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowInterfaceCountersErrorsFromReader(bytes.NewReader(s))
 }
 
@@ -80,12 +86,18 @@ func NewShowInterfaceCountersErrorsFromReader(s io.Reader) (*ShowInterfaceCounte
 }
 
 // NewShowInterfaceCountersErrorsResultFromString returns instance from an input string.
-func NewShowInterfaceCountersErrorsResultFromString(s string) (*ShowInterfaceCountersErrorsResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowInterfaceCountersErrorsResultFromString(s string) (*ShowInterfaceCountersErrorsResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowInterfaceCountersErrorsResultFromReader(strings.NewReader(s))
 }
 
 // NewShowInterfaceCountersErrorsResultFromBytes returns instance from an input byte array.
-func NewShowInterfaceCountersErrorsResultFromBytes(s []byte) (*ShowInterfaceCountersErrorsResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowInterfaceCountersErrorsResultFromBytes(s []byte) (*ShowInterfaceCountersErrorsResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowInterfaceCountersErrorsResultFromReader(bytes.NewReader(s))
 }
 

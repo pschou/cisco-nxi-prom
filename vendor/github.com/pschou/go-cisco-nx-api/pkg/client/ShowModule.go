@@ -82,12 +82,18 @@ type ShowModuleResultBody struct {
 }
 
 // NewShowModuleFromString returns instance from an input string.
-func NewShowModuleFromString(s string) (*ShowModuleResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowModuleFromString(s string) (*ShowModuleResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowModuleFromReader(strings.NewReader(s))
 }
 
 // NewShowModuleFromBytes returns instance from an input byte array.
-func NewShowModuleFromBytes(s []byte) (*ShowModuleResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowModuleFromBytes(s []byte) (*ShowModuleResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowModuleFromReader(bytes.NewReader(s))
 }
 
@@ -106,12 +112,18 @@ func NewShowModuleFromReader(s io.Reader) (*ShowModuleResponse, error) {
 }
 
 // NewShowModuleResultFromString returns instance from an input string.
-func NewShowModuleResultFromString(s string) (*ShowModuleResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowModuleResultFromString(s string) (*ShowModuleResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowModuleResultFromReader(strings.NewReader(s))
 }
 
 // NewShowModuleResultFromBytes returns instance from an input byte array.
-func NewShowModuleResultFromBytes(s []byte) (*ShowModuleResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowModuleResultFromBytes(s []byte) (*ShowModuleResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowModuleResultFromReader(bytes.NewReader(s))
 }
 

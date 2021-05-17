@@ -200,12 +200,18 @@ func (d *ShowInterfaceQuickResponseResult) Flat() (out []ShowInterfaceQuickResul
 }
 
 // NewShowInterfaceQuickFromString returns instance from an input string.
-func NewShowInterfaceQuickFromString(s string) (*ShowInterfaceQuickResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowInterfaceQuickFromString(s string) (*ShowInterfaceQuickResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowInterfaceQuickFromReader(strings.NewReader(s))
 }
 
 // NewShowInterfaceQuickFromBytes returns instance from an input byte array.
-func NewShowInterfaceQuickFromBytes(s []byte) (*ShowInterfaceQuickResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowInterfaceQuickFromBytes(s []byte) (*ShowInterfaceQuickResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowInterfaceQuickFromReader(bytes.NewReader(s))
 }
 
@@ -224,12 +230,18 @@ func NewShowInterfaceQuickFromReader(s io.Reader) (*ShowInterfaceQuickResponse, 
 }
 
 // NewShowInterfaceQuickResultFromString returns instance from an input string.
-func NewShowInterfaceQuickResultFromString(s string) (*ShowInterfaceQuickResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowInterfaceQuickResultFromString(s string) (*ShowInterfaceQuickResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowInterfaceQuickResultFromReader(strings.NewReader(s))
 }
 
 // NewShowInterfaceQuickResultFromBytes returns instance from an input byte array.
-func NewShowInterfaceQuickResultFromBytes(s []byte) (*ShowInterfaceQuickResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowInterfaceQuickResultFromBytes(s []byte) (*ShowInterfaceQuickResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowInterfaceQuickResultFromReader(bytes.NewReader(s))
 }
 

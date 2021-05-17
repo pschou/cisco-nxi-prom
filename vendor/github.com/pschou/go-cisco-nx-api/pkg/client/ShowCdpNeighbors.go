@@ -57,12 +57,18 @@ type ShowCdpNeighborsResultBody struct {
 }
 
 // NewShowCdpNeighborsFromString returns instance from an input string.
-func NewShowCdpNeighborsFromString(s string) (*ShowCdpNeighborsResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowCdpNeighborsFromString(s string) (*ShowCdpNeighborsResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowCdpNeighborsFromReader(strings.NewReader(s))
 }
 
 // NewShowCdpNeighborsFromBytes returns instance from an input byte array.
-func NewShowCdpNeighborsFromBytes(s []byte) (*ShowCdpNeighborsResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowCdpNeighborsFromBytes(s []byte) (*ShowCdpNeighborsResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowCdpNeighborsFromReader(bytes.NewReader(s))
 }
 
@@ -81,12 +87,18 @@ func NewShowCdpNeighborsFromReader(s io.Reader) (*ShowCdpNeighborsResponse, erro
 }
 
 // NewShowCdpNeighborsResultFromString returns instance from an input string.
-func NewShowCdpNeighborsResultFromString(s string) (*ShowCdpNeighborsResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowCdpNeighborsResultFromString(s string) (*ShowCdpNeighborsResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowCdpNeighborsResultFromReader(strings.NewReader(s))
 }
 
 // NewShowCdpNeighborsResultFromBytes returns instance from an input byte array.
-func NewShowCdpNeighborsResultFromBytes(s []byte) (*ShowCdpNeighborsResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowCdpNeighborsResultFromBytes(s []byte) (*ShowCdpNeighborsResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowCdpNeighborsResultFromReader(bytes.NewReader(s))
 }
 

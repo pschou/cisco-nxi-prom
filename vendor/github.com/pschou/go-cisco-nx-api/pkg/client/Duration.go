@@ -11,10 +11,10 @@ type durationUnit struct {
 }
 
 var durationUnits = []durationUnit{
-	durationUnit{'D', 24 * 3600e9},
-	durationUnit{'H', 3600e9},
-	durationUnit{'M', 60e9},
-	durationUnit{'S', 1e9},
+	{'D', 24 * 3600e9},
+	{'H', 3600e9},
+	{'M', 60e9},
+	{'S', 1e9},
 }
 
 type Duration uint64
@@ -68,15 +68,18 @@ func ParseDuration(d string) (durationVal Duration, err error) {
 					unit = 1
 				}
 			default:
-				for d[i] != durationUnits[unit].U && unit < len(durationUnits) {
+				for unit < len(durationUnits) && d[i] != durationUnits[unit].U {
 					unit++
+				}
+				if unit == len(durationUnits) {
+					return 0, errors.New("cisco time: found unusable duration: " + string(d))
 				}
 				if d[i] == durationUnits[unit].U {
 					durationVal += durationUnits[unit].Val * Duration(val)
 					val = 0
 					unit++
 				} else {
-					return 0, errors.New("cisco time: found extra numeric " + string(d[i]))
+					return 0, errors.New("cisco time: found extra numeric " + string(d[i]) + " in " + string(d))
 				}
 			}
 		}

@@ -183,12 +183,18 @@ func (d *ShowIsisAdjDetailResponseResult) Flat() (out []ShowIsisAdjDetailResultF
 }
 
 // NewShowIsisAdjDetailFromString returns instance from an input string.
-func NewShowIsisAdjDetailFromString(s string) (*ShowIsisAdjDetailResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIsisAdjDetailFromString(s string) (*ShowIsisAdjDetailResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIsisAdjDetailFromReader(strings.NewReader(s))
 }
 
 // NewShowIsisAdjDetailFromBytes returns instance from an input byte array.
-func NewShowIsisAdjDetailFromBytes(s []byte) (*ShowIsisAdjDetailResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIsisAdjDetailFromBytes(s []byte) (*ShowIsisAdjDetailResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIsisAdjDetailFromReader(bytes.NewReader(s))
 }
 
@@ -207,12 +213,18 @@ func NewShowIsisAdjDetailFromReader(s io.Reader) (*ShowIsisAdjDetailResponse, er
 }
 
 // NewShowIsisAdjDetailResultFromString returns instance from an input string.
-func NewShowIsisAdjDetailResultFromString(s string) (*ShowIsisAdjDetailResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIsisAdjDetailResultFromString(s string) (*ShowIsisAdjDetailResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIsisAdjDetailResultFromReader(strings.NewReader(s))
 }
 
 // NewShowIsisAdjDetailResultFromBytes returns instance from an input byte array.
-func NewShowIsisAdjDetailResultFromBytes(s []byte) (*ShowIsisAdjDetailResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowIsisAdjDetailResultFromBytes(s []byte) (*ShowIsisAdjDetailResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowIsisAdjDetailResultFromReader(bytes.NewReader(s))
 }
 

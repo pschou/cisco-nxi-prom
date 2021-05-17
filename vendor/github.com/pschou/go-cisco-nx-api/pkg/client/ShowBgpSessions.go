@@ -125,12 +125,18 @@ func (d *ShowBgpSessionsResponse) Flat() (out []ShowBgpSessionsResultFlat) {
 }
 
 // NewShowBgpSessionsFromString returns instance from an input string.
-func NewShowBgpSessionsFromString(s string) (*ShowBgpSessionsResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowBgpSessionsFromString(s string) (*ShowBgpSessionsResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowBgpSessionsFromReader(strings.NewReader(s))
 }
 
 // NewShowBgpSessionsFromBytes returns instance from an input byte array.
-func NewShowBgpSessionsFromBytes(s []byte) (*ShowBgpSessionsResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowBgpSessionsFromBytes(s []byte) (*ShowBgpSessionsResponse, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowBgpSessionsFromReader(bytes.NewReader(s))
 }
 
@@ -149,12 +155,18 @@ func NewShowBgpSessionsFromReader(s io.Reader) (*ShowBgpSessionsResponse, error)
 }
 
 // NewShowBgpSessionsResultFromString returns instance from an input string.
-func NewShowBgpSessionsResultFromString(s string) (*ShowBgpSessionsResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowBgpSessionsResultFromString(s string) (*ShowBgpSessionsResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowBgpSessionsResultFromReader(strings.NewReader(s))
 }
 
 // NewShowBgpSessionsResultFromBytes returns instance from an input byte array.
-func NewShowBgpSessionsResultFromBytes(s []byte) (*ShowBgpSessionsResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+func NewShowBgpSessionsResultFromBytes(s []byte) (*ShowBgpSessionsResponseResult, error) {
+	if len(s) == 0 {
+		return nil, fmt.Errorf("missing result")
+	}
 	return NewShowBgpSessionsResultFromReader(bytes.NewReader(s))
 }
 
