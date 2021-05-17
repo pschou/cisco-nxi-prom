@@ -432,10 +432,6 @@ func newTypeEncoder(t reflect.Type, allowAddr bool) encoderFunc {
 		return textMarshalerEncoder
 	}
 
-	if encoderFn, ok := customEncoder(t); ok {
-		return encoderFn
-	}
-
 	switch t.Kind() {
 	case reflect.Bool:
 		return boolEncoder

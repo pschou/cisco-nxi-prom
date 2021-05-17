@@ -46,7 +46,7 @@ type InterfaceStatusResultBody struct {
 		RowInterface []struct {
 			Interface string `json:"interface" xml:"interface"`
 			State     string `json:"state" xml:"state"`
-			VLAN      string `json:"vlan" xml:"vlan"`
+			Vlan      string `json:"vlan" xml:"vlan"`
 			Duplex    string `json:"duplex" xml:"duplex"`
 			Speed     string `json:"speed" xml:"speed"`
 			Type      string `json:"type,omitempty" xml:"type,omitempty"`
@@ -79,7 +79,7 @@ func (d *InterfaceStatusResponseResult) Flat() (out []InterfaceStatusResultFlat)
 			out = append(out, InterfaceStatusResultFlat{
 				Interface: Ri.Interface,
 				State:     Ri.State,
-				VLAN:      Ri.VLAN,
+				Vlan:      Ri.Vlan,
 				Duplex:    Ri.Duplex,
 				Speed:     Ri.Speed,
 				SpeedVal:  speedVal,
@@ -94,7 +94,7 @@ func (d *InterfaceStatusResponseResult) Flat() (out []InterfaceStatusResultFlat)
 type InterfaceStatusResultFlat struct {
 	Interface string `json:"interface" xml:"interface"`
 	State     string `json:"state" xml:"state"`
-	VLAN      string `json:"vlan" xml:"vlan"`
+	Vlan      string `json:"vlan" xml:"vlan"`
 	Duplex    string `json:"duplex" xml:"duplex"`
 	Speed     string `json:"speed" xml:"speed"`
 	SpeedVal  int    `json:"speed" xml:"speed"`

@@ -216,7 +216,10 @@ type decodeState struct {
 	savedError            error
 	useNumber             bool
 	useSlice              bool
+	ignoreEmpty           bool
 	autoConvert           bool
+	autoConvertTrimSpace  bool
+	stringTrimSpace       bool
 	disallowUnknownFields bool
 }
 
@@ -372,7 +375,16 @@ func (d *decodeState) value(v reflect.Value) error {
 
 	case scanBeginObject:
 		if v.IsValid() {
-			if err := d.object(v); err != nil {
+			if d.ignoreEmpty && func() bool {
+				for i := d.off; i < len(d.data); i++ {
+					if !isSpace(d.data[i]) {
+						return d.data[i] == '}'
+					}
+				}
+				return false
+			}() {
+				d.skip()
+			} else if err := d.object(v); err != nil {
 				return err
 			}
 		} else {
@@ -921,11 +933,12 @@ func (d *decodeState) literalStore(item []byte, v reflect.Value, fromQuoted bool
 	// Handle converting strings to non-string types
 	if d.autoConvert && v.Kind() != reflect.String && item[0] == '"' && item[len(item)-1] == '"' {
 		if value, ok := unquoteBytes(item); ok {
-			item = value
+			if d.autoConvertTrimSpace {
+				item = []byte(strings.TrimSpace(string(value)))
+			} else {
+				item = value
+			}
 			fromQuoted = true
-		}
-		if found, err := loadCustomType(item, v); found {
-			return err
 		}
 	}
 
@@ -969,6 +982,12 @@ func (d *decodeState) literalStore(item []byte, v reflect.Value, fromQuoted bool
 
 	case '"': // string
 		s, ok := unquoteBytes(item)
+
+		// Trim spaces from ends of string
+		if d.stringTrimSpace {
+			s = []byte(strings.TrimSpace(string(s)))
+		}
+
 		if !ok {
 			if fromQuoted {
 				return fmt.Errorf("json: invalid use of ,string struct tag, trying to unmarshal %q into %v", item, v.Type())

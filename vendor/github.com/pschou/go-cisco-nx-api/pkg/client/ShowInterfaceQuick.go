@@ -23,10 +23,10 @@ import (
 	"strings"
 )
 
-type InterfaceQuickResponse struct {
+type ShowInterfaceQuickResponse struct {
 	InsAPI struct {
 		Outputs struct {
-			Output InterfaceQuickResponseResult `json:"output" xml:"output"`
+			Output ShowInterfaceQuickResponseResult `json:"output" xml:"output"`
 		} `json:"outputs" xml:"outputs"`
 		Sid     string `json:"sid" xml:"sid"`
 		Type    string `json:"type" xml:"type"`
@@ -34,14 +34,14 @@ type InterfaceQuickResponse struct {
 	} `json:"ins_api" xml:"ins_api"`
 }
 
-type InterfaceQuickResponseResult struct {
-	Body  InterfaceQuickResultBody `json:"body" xml:"body"`
-	Code  string                   `json:"code" xml:"code"`
-	Input string                   `json:"input" xml:"input"`
-	Msg   string                   `json:"msg" xml:"msg"`
+type ShowInterfaceQuickResponseResult struct {
+	Body  ShowInterfaceQuickResultBody `json:"body" xml:"body"`
+	Code  string                       `json:"code" xml:"code"`
+	Input string                       `json:"input" xml:"input"`
+	Msg   string                       `json:"msg" xml:"msg"`
 }
 
-type InterfaceQuickResultBody struct {
+type ShowInterfaceQuickResultBody struct {
 	TableInterface []struct {
 		RowInterface []struct {
 			Interface         string `json:"interface" xml:"interface"`
@@ -93,7 +93,7 @@ type InterfaceQuickResultBody struct {
 	} `json:"TABLE_interface" xml:"TABLE_interface"`
 }
 
-type InterfaceQuickResultFlat struct {
+type ShowInterfaceQuickResultFlat struct {
 	Interface         string `json:"interface" xml:"interface"`
 	State             string `json:"state" xml:"state"`
 	StateRsnDesc      string `json:"state_rsn_desc" xml:"state_rsn_desc"`
@@ -141,13 +141,13 @@ type InterfaceQuickResultFlat struct {
 	VdcLvlOutAvgBytes int    `json:"vdc_lvl_out_avg_bytes" xml:"vdc_lvl_out_avg_bytes"`
 }
 
-func (d *InterfaceQuickResponse) Flat() (out []InterfaceQuickResultFlat) {
+func (d *ShowInterfaceQuickResponse) Flat() (out []ShowInterfaceQuickResultFlat) {
 	return d.InsAPI.Outputs.Output.Flat()
 }
-func (d *InterfaceQuickResponseResult) Flat() (out []InterfaceQuickResultFlat) {
+func (d *ShowInterfaceQuickResponseResult) Flat() (out []ShowInterfaceQuickResultFlat) {
 	for _, Ti := range d.Body.TableInterface {
 		for _, Ri := range Ti.RowInterface {
-			out = append(out, InterfaceQuickResultFlat{
+			out = append(out, ShowInterfaceQuickResultFlat{
 				Interface:         Ri.Interface,
 				State:             Ri.State,
 				StateRsnDesc:      Ri.StateRsnDesc,
@@ -199,50 +199,50 @@ func (d *InterfaceQuickResponseResult) Flat() (out []InterfaceQuickResultFlat) {
 	return
 }
 
-// NewInterfaceQuickFromString returns instance from an input string.
-func NewInterfaceQuickFromString(s string) (*InterfaceQuickResponse, error) {
-	return NewInterfaceQuickFromReader(strings.NewReader(s))
+// NewShowInterfaceQuickFromString returns instance from an input string.
+func NewShowInterfaceQuickFromString(s string) (*ShowInterfaceQuickResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+	return NewShowInterfaceQuickFromReader(strings.NewReader(s))
 }
 
-// NewInterfaceQuickFromBytes returns instance from an input byte array.
-func NewInterfaceQuickFromBytes(s []byte) (*InterfaceQuickResponse, error) {
-	return NewInterfaceQuickFromReader(bytes.NewReader(s))
+// NewShowInterfaceQuickFromBytes returns instance from an input byte array.
+func NewShowInterfaceQuickFromBytes(s []byte) (*ShowInterfaceQuickResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+	return NewShowInterfaceQuickFromReader(bytes.NewReader(s))
 }
 
-// NewInterfaceQuickFromReader returns instance from an input reader.
-func NewInterfaceQuickFromReader(s io.Reader) (*InterfaceQuickResponse, error) {
-	//si := &InterfaceQuick{}
-	InterfaceQuickResponseDat := &InterfaceQuickResponse{}
+// NewShowInterfaceQuickFromReader returns instance from an input reader.
+func NewShowInterfaceQuickFromReader(s io.Reader) (*ShowInterfaceQuickResponse, error) {
+	//si := &ShowInterfaceQuick{}
+	ShowInterfaceQuickResponseDat := &ShowInterfaceQuickResponse{}
 	jsonDec := json.NewDecoder(s)
 	jsonDec.UseAutoConvert()
 	jsonDec.UseSlice()
-	err := jsonDec.Decode(InterfaceQuickResponseDat)
+	err := jsonDec.Decode(ShowInterfaceQuickResponseDat)
 	if err != nil {
 		return nil, fmt.Errorf("parsing error: %s", err)
 	}
-	return InterfaceQuickResponseDat, nil
+	return ShowInterfaceQuickResponseDat, nil
 }
 
-// NewInterfaceQuickResultFromString returns instance from an input string.
-func NewInterfaceQuickResultFromString(s string) (*InterfaceQuickResponseResult, error) {
-	return NewInterfaceQuickResultFromReader(strings.NewReader(s))
+// NewShowInterfaceQuickResultFromString returns instance from an input string.
+func NewShowInterfaceQuickResultFromString(s string) (*ShowInterfaceQuickResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+	return NewShowInterfaceQuickResultFromReader(strings.NewReader(s))
 }
 
-// NewInterfaceQuickResultFromBytes returns instance from an input byte array.
-func NewInterfaceQuickResultFromBytes(s []byte) (*InterfaceQuickResponseResult, error) {
-	return NewInterfaceQuickResultFromReader(bytes.NewReader(s))
+// NewShowInterfaceQuickResultFromBytes returns instance from an input byte array.
+func NewShowInterfaceQuickResultFromBytes(s []byte) (*ShowInterfaceQuickResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+	return NewShowInterfaceQuickResultFromReader(bytes.NewReader(s))
 }
 
-// NewInterfaceQuickResultFromReader returns instance from an input reader.
-func NewInterfaceQuickResultFromReader(s io.Reader) (*InterfaceQuickResponseResult, error) {
-	//si := &InterfaceQuickResponseResult{}
-	InterfaceQuickResponseResultDat := &InterfaceQuickResponseResult{}
+// NewShowInterfaceQuickResultFromReader returns instance from an input reader.
+func NewShowInterfaceQuickResultFromReader(s io.Reader) (*ShowInterfaceQuickResponseResult, error) {
+	//si := &ShowInterfaceQuickResponseResult{}
+	ShowInterfaceQuickResponseResultDat := &ShowInterfaceQuickResponseResult{}
 	jsonDec := json.NewDecoder(s)
 	jsonDec.UseAutoConvert()
 	jsonDec.UseSlice()
-	err := jsonDec.Decode(InterfaceQuickResponseResultDat)
+	err := jsonDec.Decode(ShowInterfaceQuickResponseResultDat)
 	if err != nil {
 		return nil, fmt.Errorf("parsing error: %s", err)
 	}
-	return InterfaceQuickResponseResultDat, nil
+	return ShowInterfaceQuickResponseResultDat, nil
 }

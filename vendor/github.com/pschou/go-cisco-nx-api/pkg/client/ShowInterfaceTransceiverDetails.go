@@ -23,10 +23,10 @@ import (
 	"strings"
 )
 
-type InterfaceTransceiverDetailsResponse struct {
+type ShowInterfaceTransceiverDetailsResponse struct {
 	InsAPI struct {
 		Outputs struct {
-			Output InterfaceTransceiverDetailsResponseResult `json:"output" xml:"output"`
+			Output ShowInterfaceTransceiverDetailsResponseResult `json:"output" xml:"output"`
 		} `json:"outputs" xml:"outputs"`
 		Sid     string `json:"sid" xml:"sid"`
 		Type    string `json:"type" xml:"type"`
@@ -34,14 +34,14 @@ type InterfaceTransceiverDetailsResponse struct {
 	} `json:"ins_api" xml:"ins_api"`
 }
 
-type InterfaceTransceiverDetailsResponseResult struct {
-	Body  InterfaceTransceiverDetailsResultBody `json:"body" xml:"body"`
-	Code  string                                `json:"code" xml:"code"`
-	Input string                                `json:"input" xml:"input"`
-	Msg   string                                `json:"msg" xml:"msg"`
+type ShowInterfaceTransceiverDetailsResponseResult struct {
+	Body  ShowInterfaceTransceiverDetailsResultBody `json:"body" xml:"body"`
+	Code  string                                    `json:"code" xml:"code"`
+	Input string                                    `json:"input" xml:"input"`
+	Msg   string                                    `json:"msg" xml:"msg"`
 }
 
-type InterfaceTransceiverDetailsResultBody struct {
+type ShowInterfaceTransceiverDetailsResultBody struct {
 	TableInterface []struct {
 		RowInterface []struct {
 			Interface       string `json:"interface" xml:"interface"`
@@ -98,7 +98,7 @@ type InterfaceTransceiverDetailsResultBody struct {
 	} `json:"TABLE_interface" xml:"TABLE_interface"`
 }
 
-type InterfaceTransceiverDetailsResultFlat struct {
+type ShowInterfaceTransceiverDetailsResultFlat struct {
 	Interface       string   `json:"interface" xml:"interface"`
 	Sfp             string   `json:"sfp" xml:"sfp"`
 	Type            string   `json:"type,omitempty" xml:"type,omitempty"`
@@ -146,14 +146,14 @@ type InterfaceTransceiverDetailsResultFlat struct {
 	CurrentFlag     []string `json:"current_flag" xml:"current_flag"`
 }
 
-func (d *InterfaceTransceiverDetailsResponse) Flat() (out []InterfaceTransceiverDetailsResultFlat) {
+func (d *ShowInterfaceTransceiverDetailsResponse) Flat() (out []ShowInterfaceTransceiverDetailsResultFlat) {
 	return d.InsAPI.Outputs.Output.Flat()
 }
-func (d *InterfaceTransceiverDetailsResponseResult) Flat() (out []InterfaceTransceiverDetailsResultFlat) {
+func (d *ShowInterfaceTransceiverDetailsResponseResult) Flat() (out []ShowInterfaceTransceiverDetailsResultFlat) {
 	for _, Ti := range d.Body.TableInterface {
 		for _, Ri := range Ti.RowInterface {
 			if len(Ri.TABLELane) == 0 {
-				out = append(out, InterfaceTransceiverDetailsResultFlat{
+				out = append(out, ShowInterfaceTransceiverDetailsResultFlat{
 					Interface:       Ri.Interface,
 					Sfp:             Ri.Sfp,
 					Type:            Ri.Type,
@@ -171,7 +171,7 @@ func (d *InterfaceTransceiverDetailsResponseResult) Flat() (out []InterfaceTrans
 			}
 			for _, TL := range Ri.TABLELane {
 				for _, RL := range TL.ROWLane {
-					out = append(out, InterfaceTransceiverDetailsResultFlat{
+					out = append(out, ShowInterfaceTransceiverDetailsResultFlat{
 						Interface:       Ri.Interface,
 						Sfp:             Ri.Sfp,
 						Type:            Ri.Type,
@@ -225,50 +225,50 @@ func (d *InterfaceTransceiverDetailsResponseResult) Flat() (out []InterfaceTrans
 	return
 }
 
-// NewInterfaceTransceiverDetailsFromString returns instance from an input string.
-func NewInterfaceTransceiverDetailsFromString(s string) (*InterfaceTransceiverDetailsResponse, error) {
-	return NewInterfaceTransceiverDetailsFromReader(strings.NewReader(s))
+// NewShowInterfaceTransceiverDetailsFromString returns instance from an input string.
+func NewShowInterfaceTransceiverDetailsFromString(s string) (*ShowInterfaceTransceiverDetailsResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+	return NewShowInterfaceTransceiverDetailsFromReader(strings.NewReader(s))
 }
 
-// NewInterfaceTransceiverDetailsFromBytes returns instance from an input byte array.
-func NewInterfaceTransceiverDetailsFromBytes(s []byte) (*InterfaceTransceiverDetailsResponse, error) {
-	return NewInterfaceTransceiverDetailsFromReader(bytes.NewReader(s))
+// NewShowInterfaceTransceiverDetailsFromBytes returns instance from an input byte array.
+func NewShowInterfaceTransceiverDetailsFromBytes(s []byte) (*ShowInterfaceTransceiverDetailsResponse, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+	return NewShowInterfaceTransceiverDetailsFromReader(bytes.NewReader(s))
 }
 
-// NewInterfaceTransceiverDetailsFromReader returns instance from an input reader.
-func NewInterfaceTransceiverDetailsFromReader(s io.Reader) (*InterfaceTransceiverDetailsResponse, error) {
-	//si := &InterfaceTransceiverDetails{}
-	InterfaceTransceiverDetailsResponseDat := &InterfaceTransceiverDetailsResponse{}
+// NewShowInterfaceTransceiverDetailsFromReader returns instance from an input reader.
+func NewShowInterfaceTransceiverDetailsFromReader(s io.Reader) (*ShowInterfaceTransceiverDetailsResponse, error) {
+	//si := &ShowInterfaceTransceiverDetails{}
+	ShowInterfaceTransceiverDetailsResponseDat := &ShowInterfaceTransceiverDetailsResponse{}
 	jsonDec := json.NewDecoder(s)
 	jsonDec.UseAutoConvert()
 	jsonDec.UseSlice()
-	err := jsonDec.Decode(InterfaceTransceiverDetailsResponseDat)
+	err := jsonDec.Decode(ShowInterfaceTransceiverDetailsResponseDat)
 	if err != nil {
 		return nil, fmt.Errorf("parsing error: %s", err)
 	}
-	return InterfaceTransceiverDetailsResponseDat, nil
+	return ShowInterfaceTransceiverDetailsResponseDat, nil
 }
 
-// NewInterfaceTransceiverDetailsResultFromString returns instance from an input string.
-func NewInterfaceTransceiverDetailsResultFromString(s string) (*InterfaceTransceiverDetailsResponseResult, error) {
-	return NewInterfaceTransceiverDetailsResultFromReader(strings.NewReader(s))
+// NewShowInterfaceTransceiverDetailsResultFromString returns instance from an input string.
+func NewShowInterfaceTransceiverDetailsResultFromString(s string) (*ShowInterfaceTransceiverDetailsResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+	return NewShowInterfaceTransceiverDetailsResultFromReader(strings.NewReader(s))
 }
 
-// NewInterfaceTransceiverDetailsResultFromBytes returns instance from an input byte array.
-func NewInterfaceTransceiverDetailsResultFromBytes(s []byte) (*InterfaceTransceiverDetailsResponseResult, error) {
-	return NewInterfaceTransceiverDetailsResultFromReader(bytes.NewReader(s))
+// NewShowInterfaceTransceiverDetailsResultFromBytes returns instance from an input byte array.
+func NewShowInterfaceTransceiverDetailsResultFromBytes(s []byte) (*ShowInterfaceTransceiverDetailsResponseResult, error) { if len(s) == 0 { return nil, fmt.Errorf("missing result") }
+	return NewShowInterfaceTransceiverDetailsResultFromReader(bytes.NewReader(s))
 }
 
-// NewInterfaceTransceiverDetailsResultFromReader returns instance from an input reader.
-func NewInterfaceTransceiverDetailsResultFromReader(s io.Reader) (*InterfaceTransceiverDetailsResponseResult, error) {
-	//si := &InterfaceTransceiverDetailsResponseResult{}
-	InterfaceTransceiverDetailsResponseResultDat := &InterfaceTransceiverDetailsResponseResult{}
+// NewShowInterfaceTransceiverDetailsResultFromReader returns instance from an input reader.
+func NewShowInterfaceTransceiverDetailsResultFromReader(s io.Reader) (*ShowInterfaceTransceiverDetailsResponseResult, error) {
+	//si := &ShowInterfaceTransceiverDetailsResponseResult{}
+	ShowInterfaceTransceiverDetailsResponseResultDat := &ShowInterfaceTransceiverDetailsResponseResult{}
 	jsonDec := json.NewDecoder(s)
 	jsonDec.UseAutoConvert()
 	jsonDec.UseSlice()
-	err := jsonDec.Decode(InterfaceTransceiverDetailsResponseResultDat)
+	err := jsonDec.Decode(ShowInterfaceTransceiverDetailsResponseResultDat)
 	if err != nil {
 		return nil, fmt.Errorf("parsing error: %s", err)
 	}
-	return InterfaceTransceiverDetailsResponseResultDat, nil
+	return ShowInterfaceTransceiverDetailsResponseResultDat, nil
 }

@@ -134,25 +134,25 @@ func queryHost(host string, qryConf Nxapi) {
 	//}
 
 	// Parse the reply into structures
-	ver_resp, err := client.NewVersionResultFromBytes(results[0].Result)
+	ver_resp, err := client.NewShowVersionResultFromBytes(results[0].Result)
 	printRespErr(err, "ver", results[0].Result)
 
-	bgp_resp, err := client.NewBGPSessionsResultFromBytes(results[1].Result)
+	bgp_resp, err := client.NewShowBgpSessionsResultFromBytes(results[1].Result)
 	printRespErr(err, "bgp", results[1].Result)
 
-	iprt_resp, err := client.NewIpRouteResultFromBytes(results[2].Result)
+	iprt_resp, err := client.NewShowIpRouteResultFromBytes(results[2].Result)
 	printRespErr(err, "iproute", results[2].Result)
 
-	iparp_resp, err := client.NewIpArpResultFromBytes(results[3].Result)
+	iparp_resp, err := client.NewShowIpArpResultFromBytes(results[3].Result)
 	printRespErr(err, "iparp", results[3].Result)
 
 	stat_resp, err := client.NewInterfaceStatusResultFromBytes(results[4].Result)
 	printRespErr(err, "stat", results[4].Result)
 
-	quick_resp, err := client.NewInterfaceQuickResultFromBytes(results[5].Result)
+	quick_resp, err := client.NewShowInterfaceQuickResultFromBytes(results[5].Result)
 	printRespErr(err, "quick", results[5].Result)
 
-	isis_resp, err := client.NewIsisAdjDetailResultFromBytes(results[6].Result)
+	isis_resp, err := client.NewShowIsisAdjDetailResultFromBytes(results[6].Result)
 	printRespErr(err, "isis", results[6].Result)
 
 	//
@@ -162,11 +162,11 @@ func queryHost(host string, qryConf Nxapi) {
 		fmt.Fprintf(&buf, "cisco_info{biosVer=%q,sysVer=%q,boardID=%q,chassisID=%q} 1\n",
 			ver_resp.Body.BiosVerStr, ver_resp.Body.KickstartVerStr, ver_resp.Body.ProcBoardID, ver_resp.Body.ChassisID)
 
-		const longForm = "Mon Jan 2 15:04:05 2006"
-		t, _ := time.Parse(longForm, ver_resp.Body.RrCTime)
+		//const longForm = "Mon Jan 2 15:04:05 2006"
+		//t, _ := time.Parse(longForm, ver_resp.Body.RrCtime)
 
 		fmt.Fprintf(&buf, "cisco_reset_time{rr_reason=%q,rr_service=%q,rr_sysVer=%q} %d\n",
-			ver_resp.Body.RrReason, ver_resp.Body.RrService, ver_resp.Body.RrSysVer, t.Unix())
+			ver_resp.Body.RrReason, ver_resp.Body.RrService, ver_resp.Body.RrSysVer, ver_resp.Body.RrCtime.Time().Unix())
 
 		fmt.Fprintf(&buf, "cisco_uptime_seconds %v\n",
 			((ver_resp.Body.KernUptmDays*24+ver_resp.Body.KernUptmHrs)*60+
@@ -238,7 +238,7 @@ func queryHost(host string, qryConf Nxapi) {
 		stat_slices := stat_resp.Flat()
 		for _, r := range stat_slices {
 			fmt.Fprintf(&buf, "cisco_interface_speed_bits{interface=%q,state=%q,vlan=%q,type=%q,autoSpeed=\"%v\"} %d\n",
-				r.Interface, r.State, r.VLAN, r.Type, r.SpeedAuto, r.SpeedVal)
+				r.Interface, r.State, r.Vlan, r.Type, r.SpeedAuto, r.SpeedVal)
 		}
 	}
 
@@ -296,50 +296,5 @@ func queryHost(host string, qryConf Nxapi) {
 	} else {
 		// Send the result to Prometheus Collector
 		UploadToCollector(strings.TrimSuffix(config.Push, "/")+"/host/"+host, buf.Bytes())
-	}
-}
-
-// Handle the loading and parsing the timing for the config
-func readAndParseConfig() {
-	var err error
-
-	// Read Config
-	log.Println("Loading the configuration file.")
-	config, err = readConfig(*config_file)
-	printError(err, "Error reading or parsing config file:", *config_file, "error:", err)
-
-	// Parse the interval
-	if len(config.Interval) > 0 {
-		queryInterval, err = time.ParseDuration(config.Interval)
-		printError(err, "Parsing interval error:", err)
-	} else {
-		// One time shot deal
-		oneTime = true
-	}
-
-	//Count the total number of hosts to query
-	host_count = 0
-	for _, qryConf := range config.Nxapi {
-		for range qryConf.Host {
-			host_count++
-		}
-	}
-	log.Println("Found", host_count, "hosts in the config.")
-
-	if host_count == 0 {
-		log.Fatal("No hosts found, please add hosts for querying")
-	}
-
-	// Figure out the timing
-	if !oneTime {
-		queryStep = time.Duration(int64(queryInterval) / int64(host_count))
-	}
-}
-
-// Print error to the screen
-func printRespErr(err error, t string, dat []byte) {
-	if err != nil {
-		log.Println(t, "=", string(dat))
-		log.Println("err=", err)
 	}
 }
